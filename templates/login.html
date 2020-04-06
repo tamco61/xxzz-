@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    {{ form.csrf_token }}
+</div>
+</br>
+<form action="" method="post" novalidate>
+<div class="answer"><h2>Register Form</h2></div>
+{% for field in form if field.name != 'csrf_token' and field.name != 'submit' %}
+<div>
+    <div class="answer">
+    {{ field.label() }}
+    </div>
+    <div class="fr">
+    {{ field(size=175) }}
+    </div>
+    </br>
+    {% for error in field.errors %}
+    <div class="error">{{ error }}</div>
+    {% endfor %}
+
+</div>
+{% endfor %}
+<div class="answer">{{ form.submit(type="submit", class="btn btn-primary") }}</div>
+</form>
+{% endblock %}
